@@ -36,7 +36,7 @@ public class cc_clean_code {
 		return total_seats;
 	}
 	
-	public static void displayAllSeats(char[][] cinemaSeats) {
+	public static void displayAllSeats(char[][] cinemaSeats) { //Verbs for methods
 		
 		System.out.println("\t  1   2   3   4   5   6   7   8   9  10\n");
 		char row = 'A';
@@ -82,34 +82,62 @@ public class cc_clean_code {
 				}
 			}
 		}
-		printReceiptSeats(cinemaSeats);
+		
+		sumPriceOfSeats(cinemaSeats);
 	}
 	
-	public static void printReceiptSeats(char[][] cinemaSeats) {
+	public static void sumPriceOfSeats(char[][] cinemaSeats) {
 		
 		final double PRICE_SHEEP = 3.00;
 		final double PRICE_HOT = 14.00;
 		final double PRICE_ECONOMY = 7.00;
 		
-		int countSheep = 0, countHot = 0, countEconomy = 0;
 		double sumPrice_Sheep = 0.0, sumPrice_Hot = 0.0, sumPrice_Economy = 0;
 		double sumPrice_All;
 									
-		for(int column = 0; column < 10; column++) {
-			if(cinemaSeats[0][column] == 'X') {
-				sumPrice_Sheep += PRICE_SHEEP;
-				countSheep++;
-			} else if(cinemaSeats[1][column] == 'X') {
-				sumPrice_Hot += PRICE_HOT;
-				countHot++;
-			}else if(cinemaSeats[2][column] == 'X') {
-				sumPrice_Economy += PRICE_ECONOMY;
-				countEconomy++;
-			}
-		}
+		sumPrice_Sheep = sumOfSheep(cinemaSeats) * PRICE_SHEEP;
+		sumPrice_Hot = sumOfHot(cinemaSeats) * PRICE_HOT;
+		sumPrice_Economy = sumOfEconomy(cinemaSeats) * PRICE_ECONOMY;
 		sumPrice_All = sumPrice_Sheep + sumPrice_Hot + sumPrice_Economy;
 		
-	    System.out.println("-Seats-\t\t-Amt-\t-Price $-\t-Total $-");
+		printReceipt(sumOfSheep(cinemaSeats),sumOfHot(cinemaSeats),sumOfEconomy(cinemaSeats),
+				sumPrice_Sheep,sumPrice_Hot,sumPrice_Economy,sumPrice_All);
+	}
+	
+	public static int sumOfSheep(char[][] cinemaSeats) {
+		int count = 0;
+		for(int column=0; column < 10; column++) {
+			if(cinemaSeats[0][column]=='X') {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public static int sumOfHot(char[][] cinemaSeats) {
+		int count = 0;
+		for(int column=0; column < 10; column++) {
+			if(cinemaSeats[0][column]=='X') {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public static int sumOfEconomy(char[][] cinemaSeats) {
+		int count = 0;
+		for(int column=0; column < 10; column++) {
+			if(cinemaSeats[0][column]=='X') {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public static void printReceipt(int countSheep, int countHot, int countEconomy,
+									double sumPrice_Sheep, double sumPrice_Hot, double sumPrice_Economy,
+									double sumPrice_All) {
+		System.out.println("-Seats-\t\t-Amt-\t-Price $-\t-Total $-");
 	    System.out.printf("Sheep\t\t  %d\t  3.00\t\t   %.2f\n",countSheep,sumPrice_Sheep);
 	    System.out.printf("Hot\t\t  %d\t 14.00\t\t   %.2f\n",countHot,sumPrice_Hot);
 	    System.out.printf("Economy\t\t  %d\t  7.00\t\t   %.2f\n",countEconomy,sumPrice_Economy);

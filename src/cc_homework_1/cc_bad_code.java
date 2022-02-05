@@ -16,18 +16,18 @@ public class cc_bad_code {
 	    
 	    try (Scanner n = new Scanner(System.in)) {
 			System.out.println("How many of you are there?");
-			int v = n.nextInt();
+			int c = n.nextInt();
 			
-			if( v > 30) {
+			if( c > 30) {
 			  System.out.println("Too many people. Max: 30");
-			  v = n.nextInt(); }
+			  c = n.nextInt(); }
 			
-			displayS(cineSeat);
+			display(cineSeat);
 			
-			for(int count = 1; count <= v; count++){
+			for(int count = 1; count <= c; count++){
 	
-			  seatChosen(cineSeat);
-			  displayS(cineSeat);
+			  cineSeatChosen(cineSeat);
+			  display(cineSeat);
 			}
 		}
 	    price(cineSeat);
@@ -39,7 +39,7 @@ public class cc_bad_code {
 	// ------------------------------------------------------------------------------------------------------------------//
 	  
 	  //                                                                 ----Seat Picked
-	  public static void seatChosen(char[][] cS){
+	  public static void cineSeatChosen(char[][] cS){
 	   try (Scanner n = new Scanner(System.in)) {
 		String letters = "ABC";
 	   
@@ -99,7 +99,7 @@ public class cc_bad_code {
 	  }
 	  
 	  //                                                                      Display Seats
-	  public static void displayS(char[][] cS){
+	  public static void display(char[][] cS){
 	    char row = 'A';
 	    
 	    System.out.println("\t  1   2   3   4   5   6   7   8   9  10\n");
